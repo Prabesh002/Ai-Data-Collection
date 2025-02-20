@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merge Data</title>
+  <!-- Bootstrap CSS (Darkly theme) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/darkly/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- SheetJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">FinData Collection</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <span class="navbar-text">Merge Data</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container-fluid content-container mt-5 pt-4">
+    <h2 class="text-center my-4">Merge Data Files</h2>
+    <div class="text-center mb-3">
+      <button id="mergeImportBtn" class="btn btn-warning" title="Import files to merge">
+        <i class="bi bi-upload"></i> Import Files
+      </button>
+      <input type="file" id="mergeFileInput" multiple accept=".xlsx, .xls, .json" style="display:none;">
+      <button id="mergeBtn" class="btn btn-success" title="Merge imported data">
+        <i class="bi bi-diagram-3"></i> Merge Files
+      </button>
+    </div>
+    <!-- Merge spinner overlay -->
+    <div id="mergeSpinner" class="spinner-overlay" style="display:none;">
+      <div class="spinner-container">
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table id="mergeTable" class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Prompt</th>
+            <th>Answer (English)</th>
+            <th>Answer (Nepali)</th>
+            <th>Answer (Extra remarks)</th>
+            <th>Document link (if any?)</th>
+          </tr>
+        </thead>
+        <tbody id="mergeTableBody">
+          <!-- Merged rows will be added here -->
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center my-3">
+      <button id="exportMergeJsonBtn" class="btn btn-secondary" title="Export merged data as JSON">
+        <i class="bi bi-filetype-json"></i> Export Merged JSON
+      </button>
+      <button id="exportMergeXlsxBtn" class="btn btn-secondary" title="Export merged data as XLSX">
+        <i class="bi bi-file-earmark-spreadsheet"></i> Export Merged XLSX
+      </button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom Merge JS -->
+  <script src="merge.js"></script>
+</body>
+</html>

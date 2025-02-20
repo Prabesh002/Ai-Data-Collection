@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Collection Platform</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/darkly/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">FinData Collection</a>
+      <div class="collapse navbar-collapse" id="navbarControls">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <button id="addRowBtn" class="btn btn-light nav-link" title="Add a new row (Shortcut: Shift + Enter)">
+              <i class="bi bi-plus"></i> Add Row
+            </button>
+          </li>
+          <li class="nav-item">
+            <button id="exportJsonBtn" class="btn btn-light nav-link" title="Export data as JSON">
+              <i class="bi bi-filetype-json"></i> Export JSON
+            </button>
+          </li>
+          <li class="nav-item">
+            <button id="exportXlsxBtn" class="btn btn-light nav-link" title="Export data as XLSX">
+              <i class="bi bi-file-earmark-spreadsheet"></i> Export XLSX
+            </button>
+          </li>
+          <li class="nav-item">
+            <button id="importBtn" class="btn btn-light nav-link" title="Import data files">
+              <i class="bi bi-upload"></i> Import Data
+            </button>
+          </li>
+          <li class="nav-item">
+            <a href="merge.html" class="btn btn-light nav-link" title="Go to merge page">
+              <i class="bi bi-diagram-3"></i> Merge Data
+            </a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          Press <strong>Shift + Enter</strong> to add a new row.
+        </span>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container-fluid content-container">
+    <div class="table-responsive" id="tableContainer">
+      <table id="dataTable" class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Prompt</th>
+            <th>Answer (English)</th>
+            <th>Answer (Nepali)</th>
+            <th>Answer (Extra remarks)</th>
+            <th>Document link (if any?)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="newData">
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <input type="file" id="importFileInput" multiple accept=".xlsx, .xls, .json" style="display:none;">
+
+  <div id="spinnerOverlay" class="spinner-overlay" style="display:none;">
+    <div class="spinner-container">
+      <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="importedDataModal" tabindex="-1" aria-labelledby="importedDataModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="importedDataModalLabel">Imported Data</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table id="importedDataTable" class="table table-dark table-striped">
+              <thead>
+                <tr>
+                  <th>SN</th>
+                  <th>Prompt</th>
+                  <th>Answer 1</th>
+                  <th>Answer 2</th>
+                  <th>Answer 3</th>
+                  <th>Document Name</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="importedDataBody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
